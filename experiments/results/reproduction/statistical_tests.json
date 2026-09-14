@@ -1,0 +1,7 @@
+{
+  "mean_diff": 0.0504,
+  "ci_lower": -0.0353,
+  "ci_upper": 0.1339,
+  "p_value": 0.5,
+  "statistically_significant": false
+}

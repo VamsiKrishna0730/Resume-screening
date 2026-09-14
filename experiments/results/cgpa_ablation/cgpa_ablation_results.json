@@ -1,0 +1,41 @@
+[
+  {
+    "Configuration": "Config A: Base PRISM (No CGPA)",
+    "Accuracy": 0.6667,
+    "Precision": 1.0,
+    "Recall": 0.5,
+    "F1": 0.6667,
+    "ROC_AUC": 1.0,
+    "NDCG@5": 0.0,
+    "NDCG@10": 0.0,
+    "MRR": 0.0,
+    "Eligibility_Rate": 1.0,
+    "Mean_Score": 0.4206
+  },
+  {
+    "Configuration": "Config B: PRISM + CGPA Soft Scoring (10% Weight)",
+    "Accuracy": 1.0,
+    "Precision": 1.0,
+    "Recall": 1.0,
+    "F1": 1.0,
+    "ROC_AUC": 1.0,
+    "NDCG@5": 0.0,
+    "NDCG@10": 0.0,
+    "MRR": 0.0,
+    "Eligibility_Rate": 1.0,
+    "Mean_Score": 0.4514
+  },
+  {
+    "Configuration": "Config C: PRISM + CGPA Hard Filter (Threshold 7.0/10)",
+    "Accuracy": 0.3333,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F1": 0.0,
+    "ROC_AUC": 1.0,
+    "NDCG@5": 0.0,
+    "NDCG@10": 0.0,
+    "MRR": 0.0,
+    "Eligibility_Rate": 0.0,
+    "Mean_Score": 0.3289
+  }
+]

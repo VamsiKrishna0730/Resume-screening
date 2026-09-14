@@ -1,0 +1,20 @@
+{
+  "name": "Baseline Models Comparison",
+  "dataset": "datasets/sample_benchmark.jsonl",
+  "random_seed": 42,
+  "split_strategy": "70/15/15",
+  "k_list": [
+    1,
+    5,
+    10
+  ],
+  "threshold": 0.5,
+  "models": [
+    "keyword",
+    "jaccard",
+    "tfidf",
+    "logistic_regression",
+    "random_forest",
+    "prism_hybrid"
+  ]
+}

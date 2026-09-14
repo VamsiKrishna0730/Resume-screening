@@ -1,0 +1,614 @@
+{
+  "timestamp": "2026-09-14 16:31:42",
+  "dataset_validation": {
+    "total_samples": 20,
+    "unique_candidates": 20,
+    "unique_jobs": 3,
+    "positive_labels": 11,
+    "negative_labels": 9,
+    "class_balance_ratio": 0.55,
+    "demographic_distribution": {
+      "Group A": 8,
+      "Group B": 7,
+      "Group C": 5
+    },
+    "has_candidate_duplicates": false,
+    "status": "VALID"
+  },
+  "split": {
+    "train": 14,
+    "val": 3,
+    "test": 3,
+    "leakage_detected": false
+  },
+  "near_duplicate_leakage_audit": {
+    "exact_duplicates_count": 0,
+    "near_duplicates_count": 0,
+    "similarity_threshold": 0.7,
+    "exact_duplicates": [],
+    "near_duplicates": [],
+    "risk_level": "LOW",
+    "status": "PASS"
+  },
+  "classification_metrics": {
+    "keyword": {
+      "TP": 1,
+      "TN": 1,
+      "FP": 0,
+      "FN": 1,
+      "Accuracy": 0.6667,
+      "Precision": 1.0,
+      "Recall": 0.5,
+      "F1": 0.6667,
+      "Auto_Metrics": {
+        "accuracy": 0.6667,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6667,
+        "roc_auc": 1.0,
+        "pr_auc": 1.0
+      }
+    },
+    "jaccard": {
+      "TP": 1,
+      "TN": 1,
+      "FP": 0,
+      "FN": 1,
+      "Accuracy": 0.6667,
+      "Precision": 1.0,
+      "Recall": 0.5,
+      "F1": 0.6667,
+      "Auto_Metrics": {
+        "accuracy": 0.6667,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6667,
+        "roc_auc": 1.0,
+        "pr_auc": 1.0
+      }
+    },
+    "tfidf": {
+      "TP": 0,
+      "TN": 1,
+      "FP": 0,
+      "FN": 2,
+      "Accuracy": 0.3333,
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "F1": 0.0,
+      "Auto_Metrics": {
+        "accuracy": 0.3333,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 1.0,
+        "pr_auc": 1.0
+      }
+    },
+    "bm25": {
+      "TP": 0,
+      "TN": 1,
+      "FP": 0,
+      "FN": 2,
+      "Accuracy": 0.3333,
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "F1": 0.0,
+      "Auto_Metrics": {
+        "accuracy": 0.3333,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 1.0,
+        "pr_auc": 1.0
+      }
+    },
+    "sbert": {
+      "TP": 2,
+      "TN": 1,
+      "FP": 0,
+      "FN": 0,
+      "Accuracy": 1.0,
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "F1": 1.0,
+      "Auto_Metrics": {
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "roc_auc": 1.0,
+        "pr_auc": 1.0
+      }
+    },
+    "logistic_regression": {
+      "TP": 0,
+      "TN": 0,
+      "FP": 1,
+      "FN": 2,
+      "Accuracy": 0.0,
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "F1": 0.0,
+      "Auto_Metrics": {
+        "accuracy": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.0,
+        "pr_auc": 0.5833
+      }
+    },
+    "random_forest": {
+      "TP": 0,
+      "TN": 0,
+      "FP": 1,
+      "FN": 2,
+      "Accuracy": 0.0,
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "F1": 0.0,
+      "Auto_Metrics": {
+        "accuracy": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.0,
+        "pr_auc": 0.5833
+      }
+    },
+    "prism_hybrid": {
+      "TP": 1,
+      "TN": 1,
+      "FP": 0,
+      "FN": 1,
+      "Accuracy": 0.6667,
+      "Precision": 1.0,
+      "Recall": 0.5,
+      "F1": 0.6667,
+      "Auto_Metrics": {
+        "accuracy": 0.6667,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6667,
+        "roc_auc": 1.0,
+        "pr_auc": 1.0
+      }
+    }
+  },
+  "ranking_evaluation": {
+    "keyword": {
+      "num_evaluated_jobs": 2,
+      "mean_candidate_pool_size": 1.5,
+      "min_candidate_pool_size": 1,
+      "max_candidate_pool_size": 2,
+      "min_pool_requirement": 50,
+      "is_realistic_ranking_pool": false,
+      "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+      "mean_mrr": 0.5,
+      "mean_ndcg": {
+        "ndcg@1": 0.5,
+        "ndcg@5": 0.5,
+        "ndcg@10": 0.5
+      },
+      "mean_precision": {
+        "precision@1": 0.5,
+        "precision@5": 0.5,
+        "precision@10": 0.5
+      },
+      "per_job_details": {
+        "JOB-001": {
+          "candidate_count": 2,
+          "positive_count": 2,
+          "mrr": 1.0,
+          "ndcg@1": 1.0,
+          "precision@1": 1.0,
+          "ndcg@5": 1.0,
+          "precision@5": 1.0,
+          "ndcg@10": 1.0,
+          "precision@10": 1.0
+        },
+        "JOB-002": {
+          "candidate_count": 1,
+          "positive_count": 0,
+          "mrr": 0.0,
+          "ndcg@1": 0.0,
+          "precision@1": 0.0,
+          "ndcg@5": 0.0,
+          "precision@5": 0.0,
+          "ndcg@10": 0.0,
+          "precision@10": 0.0
+        }
+      }
+    },
+    "jaccard": {
+      "num_evaluated_jobs": 2,
+      "mean_candidate_pool_size": 1.5,
+      "min_candidate_pool_size": 1,
+      "max_candidate_pool_size": 2,
+      "min_pool_requirement": 50,
+      "is_realistic_ranking_pool": false,
+      "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+      "mean_mrr": 0.5,
+      "mean_ndcg": {
+        "ndcg@1": 0.5,
+        "ndcg@5": 0.5,
+        "ndcg@10": 0.5
+      },
+      "mean_precision": {
+        "precision@1": 0.5,
+        "precision@5": 0.5,
+        "precision@10": 0.5
+      },
+      "per_job_details": {
+        "JOB-001": {
+          "candidate_count": 2,
+          "positive_count": 2,
+          "mrr": 1.0,
+          "ndcg@1": 1.0,
+          "precision@1": 1.0,
+          "ndcg@5": 1.0,
+          "precision@5": 1.0,
+          "ndcg@10": 1.0,
+          "precision@10": 1.0
+        },
+        "JOB-002": {
+          "candidate_count": 1,
+          "positive_count": 0,
+          "mrr": 0.0,
+          "ndcg@1": 0.0,
+          "precision@1": 0.0,
+          "ndcg@5": 0.0,
+          "precision@5": 0.0,
+          "ndcg@10": 0.0,
+          "precision@10": 0.0
+        }
+      }
+    },
+    "tfidf": {
+      "num_evaluated_jobs": 2,
+      "mean_candidate_pool_size": 1.5,
+      "min_candidate_pool_size": 1,
+      "max_candidate_pool_size": 2,
+      "min_pool_requirement": 50,
+      "is_realistic_ranking_pool": false,
+      "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+      "mean_mrr": 0.5,
+      "mean_ndcg": {
+        "ndcg@1": 0.5,
+        "ndcg@5": 0.5,
+        "ndcg@10": 0.5
+      },
+      "mean_precision": {
+        "precision@1": 0.5,
+        "precision@5": 0.5,
+        "precision@10": 0.5
+      },
+      "per_job_details": {
+        "JOB-001": {
+          "candidate_count": 2,
+          "positive_count": 2,
+          "mrr": 1.0,
+          "ndcg@1": 1.0,
+          "precision@1": 1.0,
+          "ndcg@5": 1.0,
+          "precision@5": 1.0,
+          "ndcg@10": 1.0,
+          "precision@10": 1.0
+        },
+        "JOB-002": {
+          "candidate_count": 1,
+          "positive_count": 0,
+          "mrr": 0.0,
+          "ndcg@1": 0.0,
+          "precision@1": 0.0,
+          "ndcg@5": 0.0,
+          "precision@5": 0.0,
+          "ndcg@10": 0.0,
+          "precision@10": 0.0
+        }
+      }
+    },
+    "bm25": {
+      "num_evaluated_jobs": 2,
+      "mean_candidate_pool_size": 1.5,
+      "min_candidate_pool_size": 1,
+      "max_candidate_pool_size": 2,
+      "min_pool_requirement": 50,
+      "is_realistic_ranking_pool": false,
+      "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+      "mean_mrr": 0.5,
+      "mean_ndcg": {
+        "ndcg@1": 0.5,
+        "ndcg@5": 0.5,
+        "ndcg@10": 0.5
+      },
+      "mean_precision": {
+        "precision@1": 0.5,
+        "precision@5": 0.5,
+        "precision@10": 0.5
+      },
+      "per_job_details": {
+        "JOB-001": {
+          "candidate_count": 2,
+          "positive_count": 2,
+          "mrr": 1.0,
+          "ndcg@1": 1.0,
+          "precision@1": 1.0,
+          "ndcg@5": 1.0,
+          "precision@5": 1.0,
+          "ndcg@10": 1.0,
+          "precision@10": 1.0
+        },
+        "JOB-002": {
+          "candidate_count": 1,
+          "positive_count": 0,
+          "mrr": 0.0,
+          "ndcg@1": 0.0,
+          "precision@1": 0.0,
+          "ndcg@5": 0.0,
+          "precision@5": 0.0,
+          "ndcg@10": 0.0,
+          "precision@10": 0.0
+        }
+      }
+    },
+    "sbert": {
+      "num_evaluated_jobs": 2,
+      "mean_candidate_pool_size": 1.5,
+      "min_candidate_pool_size": 1,
+      "max_candidate_pool_size": 2,
+      "min_pool_requirement": 50,
+      "is_realistic_ranking_pool": false,
+      "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+      "mean_mrr": 0.5,
+      "mean_ndcg": {
+        "ndcg@1": 0.5,
+        "ndcg@5": 0.5,
+        "ndcg@10": 0.5
+      },
+      "mean_precision": {
+        "precision@1": 0.5,
+        "precision@5": 0.5,
+        "precision@10": 0.5
+      },
+      "per_job_details": {
+        "JOB-001": {
+          "candidate_count": 2,
+          "positive_count": 2,
+          "mrr": 1.0,
+          "ndcg@1": 1.0,
+          "precision@1": 1.0,
+          "ndcg@5": 1.0,
+          "precision@5": 1.0,
+          "ndcg@10": 1.0,
+          "precision@10": 1.0
+        },
+        "JOB-002": {
+          "candidate_count": 1,
+          "positive_count": 0,
+          "mrr": 0.0,
+          "ndcg@1": 0.0,
+          "precision@1": 0.0,
+          "ndcg@5": 0.0,
+          "precision@5": 0.0,
+          "ndcg@10": 0.0,
+          "precision@10": 0.0
+        }
+      }
+    },
+    "logistic_regression": {
+      "num_evaluated_jobs": 2,
+      "mean_candidate_pool_size": 1.5,
+      "min_candidate_pool_size": 1,
+      "max_candidate_pool_size": 2,
+      "min_pool_requirement": 50,
+      "is_realistic_ranking_pool": false,
+      "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+      "mean_mrr": 0.5,
+      "mean_ndcg": {
+        "ndcg@1": 0.5,
+        "ndcg@5": 0.5,
+        "ndcg@10": 0.5
+      },
+      "mean_precision": {
+        "precision@1": 0.5,
+        "precision@5": 0.5,
+        "precision@10": 0.5
+      },
+      "per_job_details": {
+        "JOB-001": {
+          "candidate_count": 2,
+          "positive_count": 2,
+          "mrr": 1.0,
+          "ndcg@1": 1.0,
+          "precision@1": 1.0,
+          "ndcg@5": 1.0,
+          "precision@5": 1.0,
+          "ndcg@10": 1.0,
+          "precision@10": 1.0
+        },
+        "JOB-002": {
+          "candidate_count": 1,
+          "positive_count": 0,
+          "mrr": 0.0,
+          "ndcg@1": 0.0,
+          "precision@1": 0.0,
+          "ndcg@5": 0.0,
+          "precision@5": 0.0,
+          "ndcg@10": 0.0,
+          "precision@10": 0.0
+        }
+      }
+    },
+    "random_forest": {
+      "num_evaluated_jobs": 2,
+      "mean_candidate_pool_size": 1.5,
+      "min_candidate_pool_size": 1,
+      "max_candidate_pool_size": 2,
+      "min_pool_requirement": 50,
+      "is_realistic_ranking_pool": false,
+      "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+      "mean_mrr": 0.5,
+      "mean_ndcg": {
+        "ndcg@1": 0.5,
+        "ndcg@5": 0.5,
+        "ndcg@10": 0.5
+      },
+      "mean_precision": {
+        "precision@1": 0.5,
+        "precision@5": 0.5,
+        "precision@10": 0.5
+      },
+      "per_job_details": {
+        "JOB-001": {
+          "candidate_count": 2,
+          "positive_count": 2,
+          "mrr": 1.0,
+          "ndcg@1": 1.0,
+          "precision@1": 1.0,
+          "ndcg@5": 1.0,
+          "precision@5": 1.0,
+          "ndcg@10": 1.0,
+          "precision@10": 1.0
+        },
+        "JOB-002": {
+          "candidate_count": 1,
+          "positive_count": 0,
+          "mrr": 0.0,
+          "ndcg@1": 0.0,
+          "precision@1": 0.0,
+          "ndcg@5": 0.0,
+          "precision@5": 0.0,
+          "ndcg@10": 0.0,
+          "precision@10": 0.0
+        }
+      }
+    },
+    "prism_hybrid": {
+      "num_evaluated_jobs": 2,
+      "mean_candidate_pool_size": 1.5,
+      "min_candidate_pool_size": 1,
+      "max_candidate_pool_size": 2,
+      "min_pool_requirement": 50,
+      "is_realistic_ranking_pool": false,
+      "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+      "mean_mrr": 0.5,
+      "mean_ndcg": {
+        "ndcg@1": 0.5,
+        "ndcg@5": 0.5,
+        "ndcg@10": 0.5
+      },
+      "mean_precision": {
+        "precision@1": 0.5,
+        "precision@5": 0.5,
+        "precision@10": 0.5
+      },
+      "per_job_details": {
+        "JOB-001": {
+          "candidate_count": 2,
+          "positive_count": 2,
+          "mrr": 1.0,
+          "ndcg@1": 1.0,
+          "precision@1": 1.0,
+          "ndcg@5": 1.0,
+          "precision@5": 1.0,
+          "ndcg@10": 1.0,
+          "precision@10": 1.0
+        },
+        "JOB-002": {
+          "candidate_count": 1,
+          "positive_count": 0,
+          "mrr": 0.0,
+          "ndcg@1": 0.0,
+          "precision@1": 0.0,
+          "ndcg@5": 0.0,
+          "precision@5": 0.0,
+          "ndcg@10": 0.0,
+          "precision@10": 0.0
+        }
+      }
+    }
+  },
+  "ranking_interpretability": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL (N=3)",
+  "fairness_evaluation": {
+    "keyword": {
+      "DPD": 1.0,
+      "EOD": 1.0,
+      "DIR": 0.0
+    },
+    "jaccard": {
+      "DPD": 1.0,
+      "EOD": 1.0,
+      "DIR": 0.0
+    },
+    "tfidf": {
+      "DPD": 0.0,
+      "EOD": 0.0,
+      "DIR": 0.0
+    },
+    "bm25": {
+      "DPD": 0.0,
+      "EOD": 0.0,
+      "DIR": 0.0
+    },
+    "sbert": {
+      "DPD": 0.5,
+      "EOD": 0.0,
+      "DIR": 0.5
+    },
+    "logistic_regression": {
+      "DPD": 0.5,
+      "EOD": 0.0,
+      "DIR": 0.0
+    },
+    "random_forest": {
+      "DPD": 0.5,
+      "EOD": 0.0,
+      "DIR": 0.0
+    },
+    "prism_hybrid": {
+      "DPD": 1.0,
+      "EOD": 1.0,
+      "DIR": 0.0
+    }
+  },
+  "statistical_test": {
+    "mean_diff": 0.0504,
+    "ci_lower": -0.0353,
+    "ci_upper": 0.1339,
+    "p_value": 0.5,
+    "statistically_significant": false,
+    "post_hoc_power": {
+      "sample_size": 3,
+      "observed_mean_diff": 0.0504,
+      "observed_std_diff": 0.0846,
+      "observed_cohens_d": 0.595,
+      "estimated_statistical_power": 0.1763,
+      "power_assessment": "INSUFFICIENT"
+    },
+    "sample_size_requirement": {
+      "expected_effect_size": 0.3,
+      "alpha": 0.05,
+      "desired_power": 0.8,
+      "alternative": "two-sided",
+      "required_sample_size": 88,
+      "mathematical_formula": "N = ceil(((z_{1-alpha/2} + z_{power}) / effect_size)^2)",
+      "scientific_interpretation": "To detect a mean effect size of d=0.3 with alpha=0.05 and power=80%, an evaluation cohort of at least N=88 independent holdout observations is required."
+    }
+  },
+  "latency_profiling": {
+    "n_runs": 100,
+    "cold_start_train_ms": 3.532,
+    "cold_start_infer_ms": 7.164,
+    "warm_total_mean_ms": 5.892,
+    "warm_total_median_ms": 4.9,
+    "warm_total_p50_ms": 4.9,
+    "warm_total_p95_ms": 10.233,
+    "warm_total_p99_ms": 17.825,
+    "warm_total_min_ms": 4.135,
+    "warm_total_max_ms": 39.133,
+    "per_candidate_mean_ms": 1.964,
+    "per_candidate_p95_ms": 3.411
+  }
+}

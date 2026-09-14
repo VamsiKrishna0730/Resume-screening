@@ -1,0 +1,42 @@
+{
+  "keyword": {
+    "DPD": 1.0,
+    "EOD": 1.0,
+    "DIR": 0.0
+  },
+  "jaccard": {
+    "DPD": 1.0,
+    "EOD": 1.0,
+    "DIR": 0.0
+  },
+  "tfidf": {
+    "DPD": 0.0,
+    "EOD": 0.0,
+    "DIR": 0.0
+  },
+  "bm25": {
+    "DPD": 0.0,
+    "EOD": 0.0,
+    "DIR": 0.0
+  },
+  "sbert": {
+    "DPD": 0.5,
+    "EOD": 0.0,
+    "DIR": 0.5
+  },
+  "logistic_regression": {
+    "DPD": 0.5,
+    "EOD": 0.0,
+    "DIR": 0.0
+  },
+  "random_forest": {
+    "DPD": 0.5,
+    "EOD": 0.0,
+    "DIR": 0.0
+  },
+  "prism_hybrid": {
+    "DPD": 1.0,
+    "EOD": 1.0,
+    "DIR": 0.0
+  }
+}

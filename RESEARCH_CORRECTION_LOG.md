@@ -1,0 +1,20 @@
+﻿# PRISM Research Correction Log
+
+**Framework Version:** 1.3.2  
+**Audit Date:** 14 September 2026  
+**Auditor:** Senior Research Software Engineer & Q1 Journal Reviewer  
+
+---
+
+## 1. Discrepancy & Methodological Correction Registry
+
+| ID | Issue | Severity | Original Statement | Evidence | Correction | Status |
+| :--- | :--- | :---: | :--- | :--- | :--- | :---: |
+| **CORR-01** | Generalizable Superiority Claimed on Holdout $N=3$ | **CRITICAL** | "PRISM achieves superior candidate matching over baseline architectures." | Holdout partition contains only $N=3$ observations. Wilcoxon signed-rank test has $p = 0.5000$ (minimum possible $p=0.25$), Post-hoc power = 0.1763. | Explicitly declare: "Statistically significant comparative superiority is NOT established on holdout $N=3$. Results represent internal prototype verification." Added power analysis module (`experiments/power_analysis.py`). | **RESOLVED & IMPLEMENTED** |
+| **CORR-02** | Keyword Baseline vs. Ablation Lexical Inconsistency | **HIGH** | "Keyword baseline achieves F1=0.6667 while Lexical Ablation achieves F1=0.0000." | `BaselineKeywordMatcher` applied heuristic scalar $\min(1.0, \text{overlap} \times 1.5)$; `PRISMHybridPipeline` used unscaled raw overlap fraction. | Renamed baseline to "Keyword Matching (Scaled Token Overlap)" in `experiments/models.py`. Documented mathematical root cause in Section 10 of empirical report; designated Ablation as an architectural progression. | **RESOLVED & IMPLEMENTED** |
+| **CORR-03** | Ranking Metric Overinterpretation on Small Pools | **HIGH** | "PRISM achieves NDCG@10 = 0.50 and MRR = 0.50." | Holdout set has $N=3$ across 2 requisitions (lists of length 1 and 2). | Created `experiments/ranking_evaluator.py` enforcing $K \ge 50$ benchmark pool check. Labeled holdout ranking status as "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL (N=3)". | **RESOLVED & IMPLEMENTED** |
+| **CORR-04** | Continuous Online Retraining Representation | **MEDIUM** | UI and documentation suggested real-time continuous learning updates. | Browser SaaS states `Recorded · Pending Adaptation`; actual retraining is batch-offline (`experiments/evaluator.py`). | Retitled to "Human-in-the-Loop Feedback Queuing & Offline Adaptation"; removed unverified claims of continuous online retraining. | **RESOLVED & IMPLEMENTED** |
+| **CORR-05** | Demographic Group Generalization | **MEDIUM** | "Fairness audit proves algorithmic equity across protected demographic cohorts." | Demographics in `datasets/sample_benchmark.jsonl` are synthetic audit labels (Groups A, B, C). | Scoped strictly to "Synthetic demographic audit groups"; disclaimed real-world protected demographic generalization. | **RESOLVED & IMPLEMENTED** |
+| **CORR-06** | SBERT & BM25 Baseline Implementations Missing | **HIGH** | "PRISM benchmarked against SBERT and BM25." | SBERT and Lucene BM25 baselines were not executed in reproduction pipeline. | Implemented genuine `BaselineBM25Matcher` (`experiments/bm25.py`) and genuine `PretrainedTransformerMatcher` with `all-MiniLM-L6-v2` (`experiments/transformer_matcher.py`). Evaluated in reproduction run. | **RESOLVED & IMPLEMENTED** |
+| **CORR-07** | Near-Duplicate Resume Leakage Unverified | **HIGH** | "Zero data leakage across partitions." | Audited pipeline tested exact string matching, but lacked near-duplicate fuzzy text screening. | Implemented 3-gram MinHash / Jaccard duplicate detector (`experiments/near_duplicate_audit.py`). Verified 0 exact and 0 near duplicates (threshold 0.70) across partitions. | **RESOLVED & IMPLEMENTED** |
+| **CORR-08** | Universal External Sample Size Requirement ($N \ge 1000$) | **MEDIUM** | "External benchmark dataset required ($N \ge 1,000$)." | $N \ge 1,000$ was an arbitrary rule-of-thumb rather than a power-justified threshold. | Created `experiments/power_analysis.py` deriving required $N$ dynamically from effect size, alpha ($0.05$), and power ($80\%$). Built ingestion pipeline `datasets/external/loader.py`. | **RESOLVED & IMPLEMENTED** |

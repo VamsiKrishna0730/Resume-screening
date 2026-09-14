@@ -1,0 +1,64 @@
+{
+  "name": "PRISM Architectural Ablation Study",
+  "dataset": "datasets/sample_benchmark.jsonl",
+  "random_seed": 42,
+  "split_strategy": "70/15/15",
+  "k_list": [
+    1,
+    5,
+    10
+  ],
+  "threshold": 0.5,
+  "configurations": [
+    {
+      "name": "A. Keyword Baseline",
+      "weights": {
+        "lexical": 1.0,
+        "semantic": 0.0,
+        "skills": 0.0,
+        "experience": 0.0,
+        "education": 0.0
+      }
+    },
+    {
+      "name": "B. Keyword + Semantic",
+      "weights": {
+        "lexical": 0.5,
+        "semantic": 0.5,
+        "skills": 0.0,
+        "experience": 0.0,
+        "education": 0.0
+      }
+    },
+    {
+      "name": "C. Keyword + Semantic + Skills",
+      "weights": {
+        "lexical": 0.35,
+        "semantic": 0.35,
+        "skills": 0.3,
+        "experience": 0.0,
+        "education": 0.0
+      }
+    },
+    {
+      "name": "D. + Experience & Education",
+      "weights": {
+        "lexical": 0.25,
+        "semantic": 0.35,
+        "skills": 0.25,
+        "experience": 0.1,
+        "education": 0.05
+      }
+    },
+    {
+      "name": "E. Full PRISM Multi-Feature",
+      "weights": {
+        "lexical": 0.2,
+        "semantic": 0.3,
+        "skills": 0.25,
+        "experience": 0.15,
+        "education": 0.1
+      }
+    }
+  ]
+}

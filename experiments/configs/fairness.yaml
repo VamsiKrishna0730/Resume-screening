@@ -1,0 +1,9 @@
+name: "Fairness Audit & Mitigation Benchmark"
+dataset: "datasets/sample_benchmark.jsonl"
+random_seed: 42
+threshold: 0.50
+group_attribute: "demographic_attribute"
+mitigation_thresholds:
+  "Group A": 0.55
+  "Group B": 0.45
+  "Group C": 0.45

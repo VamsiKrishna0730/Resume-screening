@@ -1,0 +1,63 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PRISM External Recruitment Dataset Schema",
+  "description": "Standardized schema for external candidate screening and matching datasets",
+  "type": "object",
+  "required": [
+    "candidate_id",
+    "job_id",
+    "resume_text",
+    "job_description",
+    "ground_truth_match"
+  ],
+  "properties": {
+    "candidate_id": {
+      "type": "string",
+      "description": "Anonymized unique applicant identifier"
+    },
+    "job_id": {
+      "type": "string",
+      "description": "Target job requisition identifier"
+    },
+    "resume_text": {
+      "type": "string",
+      "description": "Parsed or OCR-extracted candidate resume text (PII redacted)"
+    },
+    "job_description": {
+      "type": "string",
+      "description": "Full job description text specification"
+    },
+    "ground_truth_match": {
+      "type": "integer",
+      "enum": [0, 1],
+      "description": "Binary relevance outcome: 1 = Qualified/Shortlist, 0 = Unqualified/Reject"
+    },
+    "skills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Extracted candidate technical & domain skills"
+    },
+    "experience": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total professional experience in years"
+    },
+    "education": {
+      "type": "string",
+      "description": "Highest credential or degree earned"
+    },
+    "projects": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Portfolio projects or publications"
+    },
+    "recruiter_label": {
+      "type": "string",
+      "description": "Categorical hiring decision (e.g. Shortlist, Hold, Reject)"
+    },
+    "demographic_attribute": {
+      "type": "string",
+      "description": "Optional protected demographic cohort label for post-hoc fairness audit only (NEVER used in feature extraction)"
+    }
+  }
+}

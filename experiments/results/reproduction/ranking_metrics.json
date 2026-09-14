@@ -1,0 +1,354 @@
+{
+  "keyword": {
+    "num_evaluated_jobs": 2,
+    "mean_candidate_pool_size": 1.5,
+    "min_candidate_pool_size": 1,
+    "max_candidate_pool_size": 2,
+    "min_pool_requirement": 50,
+    "is_realistic_ranking_pool": false,
+    "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+    "mean_mrr": 0.5,
+    "mean_ndcg": {
+      "ndcg@1": 0.5,
+      "ndcg@5": 0.5,
+      "ndcg@10": 0.5
+    },
+    "mean_precision": {
+      "precision@1": 0.5,
+      "precision@5": 0.5,
+      "precision@10": 0.5
+    },
+    "per_job_details": {
+      "JOB-001": {
+        "candidate_count": 2,
+        "positive_count": 2,
+        "mrr": 1.0,
+        "ndcg@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@5": 1.0,
+        "precision@5": 1.0,
+        "ndcg@10": 1.0,
+        "precision@10": 1.0
+      },
+      "JOB-002": {
+        "candidate_count": 1,
+        "positive_count": 0,
+        "mrr": 0.0,
+        "ndcg@1": 0.0,
+        "precision@1": 0.0,
+        "ndcg@5": 0.0,
+        "precision@5": 0.0,
+        "ndcg@10": 0.0,
+        "precision@10": 0.0
+      }
+    }
+  },
+  "jaccard": {
+    "num_evaluated_jobs": 2,
+    "mean_candidate_pool_size": 1.5,
+    "min_candidate_pool_size": 1,
+    "max_candidate_pool_size": 2,
+    "min_pool_requirement": 50,
+    "is_realistic_ranking_pool": false,
+    "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+    "mean_mrr": 0.5,
+    "mean_ndcg": {
+      "ndcg@1": 0.5,
+      "ndcg@5": 0.5,
+      "ndcg@10": 0.5
+    },
+    "mean_precision": {
+      "precision@1": 0.5,
+      "precision@5": 0.5,
+      "precision@10": 0.5
+    },
+    "per_job_details": {
+      "JOB-001": {
+        "candidate_count": 2,
+        "positive_count": 2,
+        "mrr": 1.0,
+        "ndcg@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@5": 1.0,
+        "precision@5": 1.0,
+        "ndcg@10": 1.0,
+        "precision@10": 1.0
+      },
+      "JOB-002": {
+        "candidate_count": 1,
+        "positive_count": 0,
+        "mrr": 0.0,
+        "ndcg@1": 0.0,
+        "precision@1": 0.0,
+        "ndcg@5": 0.0,
+        "precision@5": 0.0,
+        "ndcg@10": 0.0,
+        "precision@10": 0.0
+      }
+    }
+  },
+  "tfidf": {
+    "num_evaluated_jobs": 2,
+    "mean_candidate_pool_size": 1.5,
+    "min_candidate_pool_size": 1,
+    "max_candidate_pool_size": 2,
+    "min_pool_requirement": 50,
+    "is_realistic_ranking_pool": false,
+    "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+    "mean_mrr": 0.5,
+    "mean_ndcg": {
+      "ndcg@1": 0.5,
+      "ndcg@5": 0.5,
+      "ndcg@10": 0.5
+    },
+    "mean_precision": {
+      "precision@1": 0.5,
+      "precision@5": 0.5,
+      "precision@10": 0.5
+    },
+    "per_job_details": {
+      "JOB-001": {
+        "candidate_count": 2,
+        "positive_count": 2,
+        "mrr": 1.0,
+        "ndcg@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@5": 1.0,
+        "precision@5": 1.0,
+        "ndcg@10": 1.0,
+        "precision@10": 1.0
+      },
+      "JOB-002": {
+        "candidate_count": 1,
+        "positive_count": 0,
+        "mrr": 0.0,
+        "ndcg@1": 0.0,
+        "precision@1": 0.0,
+        "ndcg@5": 0.0,
+        "precision@5": 0.0,
+        "ndcg@10": 0.0,
+        "precision@10": 0.0
+      }
+    }
+  },
+  "bm25": {
+    "num_evaluated_jobs": 2,
+    "mean_candidate_pool_size": 1.5,
+    "min_candidate_pool_size": 1,
+    "max_candidate_pool_size": 2,
+    "min_pool_requirement": 50,
+    "is_realistic_ranking_pool": false,
+    "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+    "mean_mrr": 0.5,
+    "mean_ndcg": {
+      "ndcg@1": 0.5,
+      "ndcg@5": 0.5,
+      "ndcg@10": 0.5
+    },
+    "mean_precision": {
+      "precision@1": 0.5,
+      "precision@5": 0.5,
+      "precision@10": 0.5
+    },
+    "per_job_details": {
+      "JOB-001": {
+        "candidate_count": 2,
+        "positive_count": 2,
+        "mrr": 1.0,
+        "ndcg@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@5": 1.0,
+        "precision@5": 1.0,
+        "ndcg@10": 1.0,
+        "precision@10": 1.0
+      },
+      "JOB-002": {
+        "candidate_count": 1,
+        "positive_count": 0,
+        "mrr": 0.0,
+        "ndcg@1": 0.0,
+        "precision@1": 0.0,
+        "ndcg@5": 0.0,
+        "precision@5": 0.0,
+        "ndcg@10": 0.0,
+        "precision@10": 0.0
+      }
+    }
+  },
+  "sbert": {
+    "num_evaluated_jobs": 2,
+    "mean_candidate_pool_size": 1.5,
+    "min_candidate_pool_size": 1,
+    "max_candidate_pool_size": 2,
+    "min_pool_requirement": 50,
+    "is_realistic_ranking_pool": false,
+    "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+    "mean_mrr": 0.5,
+    "mean_ndcg": {
+      "ndcg@1": 0.5,
+      "ndcg@5": 0.5,
+      "ndcg@10": 0.5
+    },
+    "mean_precision": {
+      "precision@1": 0.5,
+      "precision@5": 0.5,
+      "precision@10": 0.5
+    },
+    "per_job_details": {
+      "JOB-001": {
+        "candidate_count": 2,
+        "positive_count": 2,
+        "mrr": 1.0,
+        "ndcg@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@5": 1.0,
+        "precision@5": 1.0,
+        "ndcg@10": 1.0,
+        "precision@10": 1.0
+      },
+      "JOB-002": {
+        "candidate_count": 1,
+        "positive_count": 0,
+        "mrr": 0.0,
+        "ndcg@1": 0.0,
+        "precision@1": 0.0,
+        "ndcg@5": 0.0,
+        "precision@5": 0.0,
+        "ndcg@10": 0.0,
+        "precision@10": 0.0
+      }
+    }
+  },
+  "logistic_regression": {
+    "num_evaluated_jobs": 2,
+    "mean_candidate_pool_size": 1.5,
+    "min_candidate_pool_size": 1,
+    "max_candidate_pool_size": 2,
+    "min_pool_requirement": 50,
+    "is_realistic_ranking_pool": false,
+    "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+    "mean_mrr": 0.5,
+    "mean_ndcg": {
+      "ndcg@1": 0.5,
+      "ndcg@5": 0.5,
+      "ndcg@10": 0.5
+    },
+    "mean_precision": {
+      "precision@1": 0.5,
+      "precision@5": 0.5,
+      "precision@10": 0.5
+    },
+    "per_job_details": {
+      "JOB-001": {
+        "candidate_count": 2,
+        "positive_count": 2,
+        "mrr": 1.0,
+        "ndcg@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@5": 1.0,
+        "precision@5": 1.0,
+        "ndcg@10": 1.0,
+        "precision@10": 1.0
+      },
+      "JOB-002": {
+        "candidate_count": 1,
+        "positive_count": 0,
+        "mrr": 0.0,
+        "ndcg@1": 0.0,
+        "precision@1": 0.0,
+        "ndcg@5": 0.0,
+        "precision@5": 0.0,
+        "ndcg@10": 0.0,
+        "precision@10": 0.0
+      }
+    }
+  },
+  "random_forest": {
+    "num_evaluated_jobs": 2,
+    "mean_candidate_pool_size": 1.5,
+    "min_candidate_pool_size": 1,
+    "max_candidate_pool_size": 2,
+    "min_pool_requirement": 50,
+    "is_realistic_ranking_pool": false,
+    "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+    "mean_mrr": 0.5,
+    "mean_ndcg": {
+      "ndcg@1": 0.5,
+      "ndcg@5": 0.5,
+      "ndcg@10": 0.5
+    },
+    "mean_precision": {
+      "precision@1": 0.5,
+      "precision@5": 0.5,
+      "precision@10": 0.5
+    },
+    "per_job_details": {
+      "JOB-001": {
+        "candidate_count": 2,
+        "positive_count": 2,
+        "mrr": 1.0,
+        "ndcg@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@5": 1.0,
+        "precision@5": 1.0,
+        "ndcg@10": 1.0,
+        "precision@10": 1.0
+      },
+      "JOB-002": {
+        "candidate_count": 1,
+        "positive_count": 0,
+        "mrr": 0.0,
+        "ndcg@1": 0.0,
+        "precision@1": 0.0,
+        "ndcg@5": 0.0,
+        "precision@5": 0.0,
+        "ndcg@10": 0.0,
+        "precision@10": 0.0
+      }
+    }
+  },
+  "prism_hybrid": {
+    "num_evaluated_jobs": 2,
+    "mean_candidate_pool_size": 1.5,
+    "min_candidate_pool_size": 1,
+    "max_candidate_pool_size": 2,
+    "min_pool_requirement": 50,
+    "is_realistic_ranking_pool": false,
+    "interpretability_status": "NOT INTERPRETABLE / INSUFFICIENT RANKING POOL",
+    "mean_mrr": 0.5,
+    "mean_ndcg": {
+      "ndcg@1": 0.5,
+      "ndcg@5": 0.5,
+      "ndcg@10": 0.5
+    },
+    "mean_precision": {
+      "precision@1": 0.5,
+      "precision@5": 0.5,
+      "precision@10": 0.5
+    },
+    "per_job_details": {
+      "JOB-001": {
+        "candidate_count": 2,
+        "positive_count": 2,
+        "mrr": 1.0,
+        "ndcg@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@5": 1.0,
+        "precision@5": 1.0,
+        "ndcg@10": 1.0,
+        "precision@10": 1.0
+      },
+      "JOB-002": {
+        "candidate_count": 1,
+        "positive_count": 0,
+        "mrr": 0.0,
+        "ndcg@1": 0.0,
+        "precision@1": 0.0,
+        "ndcg@5": 0.0,
+        "precision@5": 0.0,
+        "ndcg@10": 0.0,
+        "precision@10": 0.0
+      }
+    }
+  }
+}

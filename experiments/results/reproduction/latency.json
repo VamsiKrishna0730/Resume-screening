@@ -1,0 +1,14 @@
+{
+  "n_runs": 100,
+  "cold_start_train_ms": 3.532,
+  "cold_start_infer_ms": 7.164,
+  "warm_total_mean_ms": 5.892,
+  "warm_total_median_ms": 4.9,
+  "warm_total_p50_ms": 4.9,
+  "warm_total_p95_ms": 10.233,
+  "warm_total_p99_ms": 17.825,
+  "warm_total_min_ms": 4.135,
+  "warm_total_max_ms": 39.133,
+  "per_candidate_mean_ms": 1.964,
+  "per_candidate_p95_ms": 3.411
+}

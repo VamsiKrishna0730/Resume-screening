@@ -1,0 +1,29 @@
+{
+  "experiment_id": "EXP-DEFAULT-BENCHMARK",
+  "version": "1.3.2",
+  "seed": 42,
+  "trainRatio": 0.70,
+  "validationRatio": 0.15,
+  "testRatio": 0.15,
+  "kValues": [1, 5, 10, 20],
+  "threshold": 0.50,
+  "featureWeights": {
+    "lexical": 0.20,
+    "semantic": 0.30,
+    "skills": 0.25,
+    "experience": 0.15,
+    "education": 0.10
+  },
+  "baselines": [
+    "keyword",
+    "jaccard",
+    "tfidf",
+    "logistic_regression",
+    "random_forest",
+    "prism_hybrid"
+  ],
+  "dataset": {
+    "verificationBenchmarkPath": "datasets/sample_benchmark.jsonl",
+    "externalBenchmarkDirectory": "datasets/raw/"
+  }
+}

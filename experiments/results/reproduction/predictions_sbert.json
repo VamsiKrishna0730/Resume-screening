@@ -1,0 +1,29 @@
+[
+  {
+    "candidate_id": "C-1007",
+    "job_id": "JOB-001",
+    "ground_truth": 1,
+    "score": 0.5948,
+    "prediction": 1,
+    "rank": 1,
+    "demographic_group": "Group C"
+  },
+  {
+    "candidate_id": "C-1011",
+    "job_id": "JOB-001",
+    "ground_truth": 1,
+    "score": 0.5883,
+    "prediction": 1,
+    "rank": 2,
+    "demographic_group": "Group B"
+  },
+  {
+    "candidate_id": "C-1015",
+    "job_id": "JOB-002",
+    "ground_truth": 0,
+    "score": 0.3355,
+    "prediction": 0,
+    "rank": 3,
+    "demographic_group": "Group C"
+  }
+]

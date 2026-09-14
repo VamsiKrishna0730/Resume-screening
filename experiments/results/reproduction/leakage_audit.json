@@ -1,0 +1,9 @@
+{
+  "exact_duplicates_count": 0,
+  "near_duplicates_count": 0,
+  "similarity_threshold": 0.7,
+  "exact_duplicates": [],
+  "near_duplicates": [],
+  "risk_level": "LOW",
+  "status": "PASS"
+}
