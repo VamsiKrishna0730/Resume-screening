@@ -7,8 +7,8 @@ export async function POST(request: Request) {
     const candidateId = body.candidateId || 'C-1001'
     const jobId = body.jobId || 'JOB-001'
 
-    const candidate = seedCandidates.find(c => c.id === candidateId) || seedCandidates[0]
-    const job = seedJobs.find(j => j.id === jobId) || seedJobs[0]
+    const candidate = body.candidate || seedCandidates.find(c => c.id === candidateId) || seedCandidates[0]
+    const job = body.job || seedJobs.find(j => j.id === jobId) || seedJobs[0]
 
     const questions = [
       `Could you describe your hands-on experience building architectures using ${candidate.skills.slice(0, 2).join(' and ')}?`,

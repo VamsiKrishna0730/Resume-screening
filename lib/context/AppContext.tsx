@@ -69,6 +69,7 @@ interface AppContextType {
   setSimulationSpeed: (speed: 'Slow' | 'Normal' | 'Fast') => void
   addParsedCandidate: (rawResumeText: string) => Candidate
   resetDemo: () => void
+  isHydrated: boolean
 }
 
 const AppContext = createContext<AppContextType | null>(null)
@@ -87,6 +88,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [simulationRunning, setSimulationRunning] = useState<boolean>(false)
   const [simulationStep, setSimulationStep] = useState<number>(0)
   const [simulationSpeed, setSimulationSpeed] = useState<'Slow' | 'Normal' | 'Fast'>('Normal')
+  const [isHydrated, setIsHydrated] = useState<boolean>(false)
 
   const [applicationsList, setApplicationsList] = useState<CandidateApplication[]>([])
 
@@ -392,7 +394,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       }
       const savedApps = localStorage.getItem('prism_applications')
       if (savedApps) setApplicationsList(JSON.parse(savedApps))
-    } catch (e) {}
+    } catch (e) {} finally {
+      setIsHydrated(true)
+    }
   }, [])
 
   useEffect(() => {
@@ -511,6 +515,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setSimulationSpeed,
         addParsedCandidate,
         resetDemo,
+        isHydrated,
       }}
     >
       {children}

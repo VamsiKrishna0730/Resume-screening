@@ -1,10 +1,12 @@
 'use client'
 
-import React, { use, useState } from 'react'
+import React, { use, useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Sparkles, Check, HelpCircle, FileText, Search, Shield, ChevronRight } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
+import { ArrowLeft, Sparkles, Check, HelpCircle, FileText, Search, Shield, AlertTriangle } from 'lucide-react'
 import { useApp } from '@/lib/context/AppContext'
 import { CandidateStatus } from '@/lib/demo-data'
+import { scoreCandidate } from '@/lib/matching/score'
 
 function Badge({ children, t = 'neutral' }: { children: React.ReactNode; t?: string }) {
   return <span className={`badge badge-${t}`}>{children}</span>
@@ -13,13 +15,26 @@ function Badge({ children, t = 'neutral' }: { children: React.ReactNode; t?: str
 export default function CandidateDetailPage({ params }: { params: Promise<{ candidateId: string }> }) {
   const resolvedParams = use(params)
   const candidateId = resolvedParams.candidateId
+  const searchParams = useSearchParams()
+  const jobIdParam = searchParams.get('jobId')
+  const fromParam = searchParams.get('from')
 
-  const { candidatesList, matchResultsMap, setCandidateStatus, selectedJob, addActivityEvent } = useApp()
-  const candidate = candidatesList.find(c => c.id === candidateId) || candidatesList[0]
-  const matchResult = matchResultsMap[candidate.id]
+  const { candidatesList, jobsList, matchResultsMap, setCandidateStatus, selectedJob, weights, addActivityEvent, isHydrated } = useApp()
+  
+  const candidate = candidatesList.find(c => c.id === candidateId)
+  const activeJob = (jobIdParam ? jobsList.find(j => j.id === jobIdParam) : null) || selectedJob
+
+  // Match result: use precalculated map if candidate matches activeJob, else compute dynamically
+  const matchResult = useMemo(() => {
+    if (!candidate || !activeJob) return null
+    if (activeJob.id === selectedJob.id && matchResultsMap[candidate.id]) {
+      return matchResultsMap[candidate.id]
+    }
+    return scoreCandidate(candidate, activeJob, weights)
+  }, [candidate, activeJob, selectedJob, matchResultsMap, weights])
 
   const [aiLoading, setAiLoading] = useState(false)
-  const [activeTab, setActiveTab] = useState<'analysis' | 'explanation' | 'skills' | 'interview' | 'summary'>('analysis')
+  const [activeTab, setActiveTab] = useState<'analysis' | 'explanation' | 'skills' | 'interview' | 'summary'>('explanation')
   const [analysisData, setAnalysisData] = useState<any>(null)
   const [explanationData, setExplanationData] = useState<any>(null)
   const [skillsData, setSkillsData] = useState<any>(null)
@@ -27,12 +42,35 @@ export default function CandidateDetailPage({ params }: { params: Promise<{ cand
   const [summaryData, setSummaryData] = useState<any>(null)
   const [toastMsg, setToastMsg] = useState('')
 
+  // Seed default explanation & skill gaps immediately from PRISM scoring engine
+  useEffect(() => {
+    if (candidate && activeJob && matchResult) {
+      if (!explanationData) {
+        setExplanationData({
+          summary: `Evaluation for ${candidate.name} against ${activeJob.title} (${matchResult.totalScore}% match)`,
+          positiveContributions: matchResult.explanations?.filter(f => f.isPositive).map(f => f.description) || [
+            `Strong domain alignment for ${activeJob.title}`,
+          ],
+          negativeContributions: matchResult.explanations?.filter(f => !f.isPositive).map(f => f.description) || [],
+        })
+      }
+      if (!skillsData) {
+        setSkillsData({
+          matchedSkills: matchResult.skillAnalysis?.matchedSkills || [],
+          missingSkills: matchResult.skillAnalysis?.missingSkills || [],
+          coverageRatio: matchResult.skillAnalysis?.coverageRatio || 0.8,
+        })
+      }
+    }
+  }, [candidate, activeJob, matchResult])
+
   const notify = (msg: string) => {
     setToastMsg(msg)
     setTimeout(() => setToastMsg(''), 2500)
   }
 
   const handleDecision = (status: CandidateStatus) => {
+    if (!candidate) return
     setCandidateStatus(candidate.id, status)
     addActivityEvent(`Recruiter decision: ${status}`, `${candidate.name} (${candidate.id})`, 'Complete')
     notify(`Candidate marked as ${status}`)
@@ -40,6 +78,7 @@ export default function CandidateDetailPage({ params }: { params: Promise<{ cand
 
   // 1. Analyze Candidate
   const runAnalyze = async () => {
+    if (!candidate || !activeJob) return
     setAiLoading(true)
     setActiveTab('analysis')
     try {
@@ -48,7 +87,7 @@ export default function CandidateDetailPage({ params }: { params: Promise<{ cand
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           candidateText: `Candidate: ${candidate.name}, Skills: ${candidate.skills.join(', ')}, Degree: ${candidate.education}`,
-          jobTitle: selectedJob.title,
+          jobTitle: activeJob.title,
         }),
       })
       const json = await res.json()
@@ -63,13 +102,19 @@ export default function CandidateDetailPage({ params }: { params: Promise<{ cand
 
   // 2. Explain Match
   const runExplain = async () => {
+    if (!candidate || !activeJob) return
     setAiLoading(true)
     setActiveTab('explanation')
     try {
       const res = await fetch('/api/ai/explain', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ candidateId: candidate.id, jobId: selectedJob.id }),
+        body: JSON.stringify({
+          candidateId: candidate.id,
+          jobId: activeJob.id,
+          candidate,
+          job: activeJob,
+        }),
       })
       const json = await res.json()
       if (json.success) setExplanationData(json.data)
@@ -83,13 +128,19 @@ export default function CandidateDetailPage({ params }: { params: Promise<{ cand
 
   // 3. Find Missing Skills
   const runSkills = async () => {
+    if (!candidate || !activeJob) return
     setAiLoading(true)
     setActiveTab('skills')
     try {
       const res = await fetch('/api/ai/skills', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ candidateId: candidate.id, jobId: selectedJob.id }),
+        body: JSON.stringify({
+          candidateId: candidate.id,
+          jobId: activeJob.id,
+          candidate,
+          job: activeJob,
+        }),
       })
       const json = await res.json()
       if (json.success) setSkillsData(json.data)
@@ -103,13 +154,19 @@ export default function CandidateDetailPage({ params }: { params: Promise<{ cand
 
   // 4. Generate Interview Questions
   const runInterview = async () => {
+    if (!candidate || !activeJob) return
     setAiLoading(true)
     setActiveTab('interview')
     try {
       const res = await fetch('/api/ai/interview', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ candidateId: candidate.id, jobId: selectedJob.id }),
+        body: JSON.stringify({
+          candidateId: candidate.id,
+          jobId: activeJob.id,
+          candidate,
+          job: activeJob,
+        }),
       })
       const json = await res.json()
       if (json.success) setInterviewData(json.data)
@@ -123,6 +180,7 @@ export default function CandidateDetailPage({ params }: { params: Promise<{ cand
 
   // 5. Generate Recruiter Summary
   const runSummary = async () => {
+    if (!candidate || !activeJob) return
     setAiLoading(true)
     setActiveTab('summary')
     try {
@@ -131,13 +189,13 @@ export default function CandidateDetailPage({ params }: { params: Promise<{ cand
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           candidateText: `Candidate: ${candidate.name}, Skills: ${candidate.skills.join(', ')}, Degree: ${candidate.education}`,
-          jobTitle: selectedJob.title,
+          jobTitle: activeJob.title,
         }),
       })
       const json = await res.json()
       if (json.success) {
         setSummaryData({
-          recruiterSummary: `Executive briefing for ${candidate.name}: Profile matches ${matchResult?.totalScore || 85}% of specifications for ${selectedJob.title}. Candidate demonstrates solid foundations in ${candidate.skills.slice(0, 3).join(', ')}.`,
+          recruiterSummary: `Executive briefing for ${candidate.name}: Profile matches ${matchResult?.totalScore || 85}% of specifications for ${activeJob.title}. Candidate demonstrates solid foundations in ${candidate.skills.slice(0, 3).join(', ')}.`,
           recommendedAction: json.data?.recommendedAction || 'Advance for Technical Interview',
           provider: json.data?.provider || 'Deterministic Fallback',
         })
@@ -150,6 +208,38 @@ export default function CandidateDetailPage({ params }: { params: Promise<{ cand
     }
   }
 
+  // Handle Loading state while AppContext hydrates from localStorage
+  if (!isHydrated) {
+    return (
+      <div style={{ maxWidth: '600px', margin: '80px auto', textAlign: 'center', padding: '40px 20px', color: 'var(--muted-foreground)' }}>
+        <Sparkles size={32} style={{ margin: '0 auto 12px auto', animation: 'spin 1.5s linear infinite', color: 'var(--primary)' }} />
+        <h3 style={{ margin: '0 0 8px 0', color: 'var(--foreground)' }}>Loading Candidate Profile...</h3>
+        <p style={{ fontSize: '13px', margin: 0 }}>Retrieving PRISM evaluation data for {candidateId}...</p>
+      </div>
+    )
+  }
+
+  // Handle Candidate Not Found gracefully once hydrated
+  if (!candidate) {
+    return (
+      <div style={{ maxWidth: '600px', margin: '60px auto', textAlign: 'center', padding: '32px', background: 'var(--card)', border: '1px solid var(--border)', borderRadius: '12px' }}>
+        <AlertTriangle size={36} style={{ color: 'var(--amber)', margin: '0 auto 12px auto' }} />
+        <h2>Candidate Not Found</h2>
+        <p style={{ color: 'var(--muted-foreground)', margin: '12px 0 24px' }}>
+          We could not find a candidate with ID <code style={{ color: 'var(--primary)', fontWeight: 600 }}>{candidateId}</code> in the PRISM talent pool.
+        </p>
+        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+          <Link href="/dashboard" className="button outline" style={{ textDecoration: 'none' }}>
+            ← Back to Dashboard
+          </Link>
+          <Link href="/candidates" className="button primary" style={{ textDecoration: 'none' }}>
+            View Candidates Pool
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   const parts = matchResult?.scoreParts || {
     lexical: 80,
     semantic: 85,
@@ -157,14 +247,18 @@ export default function CandidateDetailPage({ params }: { params: Promise<{ cand
     experience: 85,
     education: 80,
     projects: 85,
+    cgpa: 80,
   }
+
+  const backLink = fromParam === 'dashboard' ? '/dashboard' : '/candidates'
+  const backLabel = fromParam === 'dashboard' ? 'Back to Dashboard' : 'Back to Candidates'
 
   return (
     <>
       <div className="page-heading">
         <div>
-          <Link href="/candidates" className="text-button" style={{ marginBottom: '8px', display: 'inline-flex' }}>
-            <ArrowLeft size={14} /> Back to Candidates
+          <Link href={backLink} className="text-button" style={{ marginBottom: '8px', display: 'inline-flex' }}>
+            <ArrowLeft size={14} /> {backLabel}
           </Link>
           <p className="eyebrow">{candidate.id} · CANDIDATE PROFILE</p>
           <h1>{candidate.name}</h1>
@@ -195,7 +289,7 @@ export default function CandidateDetailPage({ params }: { params: Promise<{ cand
         {/* Left Panel: Profile and Features */}
         <div className="panel">
           <div className="panel-head">
-            <h2>Evaluation vs {selectedJob.title}</h2>
+            <h2>Evaluation vs {activeJob.title}</h2>
             <Badge t="teal">{matchResult?.totalScore || 85}% Hybrid Score</Badge>
           </div>
 
@@ -240,8 +334,8 @@ export default function CandidateDetailPage({ params }: { params: Promise<{ cand
             <small className="eyebrow">SKILLS PORTFOLIO</small>
             <div className="tags" style={{ marginTop: '8px' }}>
               {candidate.skills.map(s => (
-                <Badge key={s} t={selectedJob.required.includes(s) ? 'teal' : 'neutral'}>
-                  {selectedJob.required.includes(s) ? '✓ ' : ''}{s}
+                <Badge key={s} t={activeJob.required.includes(s) ? 'teal' : 'neutral'}>
+                  {activeJob.required.includes(s) ? '✓ ' : ''}{s}
                 </Badge>
               ))}
               {candidate.cgpa !== undefined && (

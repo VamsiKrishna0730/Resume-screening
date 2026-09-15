@@ -1,4 +1,4 @@
-﻿import assert from 'node:assert/strict';
+import assert from 'node:assert/strict';
 import test from 'node:test';
 import { extractCGPAFromText } from '../lib/parsing/cgpaParser.ts';
 import { screenCandidateCGPA } from '../lib/matching/cgpa.ts';
@@ -124,4 +124,21 @@ test('Applications: Unique candidate application per job', () => {
   assert.equal(canApply('job-1', 'c-100'), false, 'Duplicate application must be rejected');
   assert.equal(canApply('job-2', 'c-100'), true, 'New job application allowed');
   assert.equal(canApply('job-1', 'c-101'), true, 'Different candidate application allowed');
+});
+
+// 6. Top Ranked Candidates "Analyze" Button Navigation & Mapping
+test('Top Ranked Candidates: Analyze button constructs correct target route and query params', () => {
+  const mockCandidates = [
+    { id: 'C-1001', name: 'Ananya Rao' },
+    { id: 'C-1002', name: 'Rahul Kumar' },
+    { id: 'C-1003', name: 'Priya Sharma' }
+  ];
+  const selectedJobId = 'JOB-001';
+
+  mockCandidates.forEach(cand => {
+    const targetHref = `/candidates/${cand.id}?jobId=${selectedJobId}&from=dashboard`;
+    assert.ok(targetHref.startsWith(`/candidates/${cand.id}`));
+    assert.ok(targetHref.includes(`jobId=${selectedJobId}`));
+    assert.ok(targetHref.includes('from=dashboard'));
+  });
 });

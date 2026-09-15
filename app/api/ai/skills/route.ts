@@ -7,12 +7,12 @@ export async function POST(request: Request) {
     const candidateId = body.candidateId || 'C-1001'
     const jobId = body.jobId || 'JOB-001'
 
-    const candidate = seedCandidates.find(c => c.id === candidateId) || seedCandidates[0]
-    const job = seedJobs.find(j => j.id === jobId) || seedJobs[0]
+    const candidate = body.candidate || seedCandidates.find(c => c.id === candidateId) || seedCandidates[0]
+    const job = body.job || seedJobs.find(j => j.id === jobId) || seedJobs[0]
 
-    const candidateSkillsLower = candidate.skills.map(s => s.toLowerCase())
-    const matched = job.required.filter(r => candidateSkillsLower.includes(r.toLowerCase()))
-    const missing = job.required.filter(r => !candidateSkillsLower.includes(r.toLowerCase()))
+    const candidateSkillsLower = (candidate.skills || []).map((s: string) => s.toLowerCase())
+    const matched = (job.required || []).filter((r: string) => candidateSkillsLower.includes(r.toLowerCase()))
+    const missing = (job.required || []).filter((r: string) => !candidateSkillsLower.includes(r.toLowerCase()))
 
     return NextResponse.json({
       success: true,

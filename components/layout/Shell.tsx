@@ -242,7 +242,7 @@ export function Shell({ children }: ShellProps) {
     return <main>{children}</main>
   }
 
-  if (pathname.startsWith('/candidate')) {
+  if (pathname === '/candidate' || pathname.startsWith('/candidate/')) {
     return <CandidateShell>{children}</CandidateShell>
   }
 

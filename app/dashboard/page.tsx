@@ -23,7 +23,7 @@ function Badge({ children, t = 'neutral' }: { children: React.ReactNode; t?: str
 }
 
 export default function DashboardPage() {
-  const { jobsList, candidatesList, matchResultsMap, fairnessReport, activitiesList } = useApp()
+  const { jobsList, candidatesList, matchResultsMap, rankedCandidates, selectedJob, fairnessReport, activitiesList } = useApp()
 
   const qualifiedCount = candidatesList.filter(c => (matchResultsMap[c.id]?.totalScore || 0) >= 80).length
   const avgScore =
@@ -100,7 +100,7 @@ export default function DashboardPage() {
               View pool <ArrowRight size={14} />
             </Link>
           </div>
-          {candidatesList.slice(0, 3).map(c => {
+          {rankedCandidates.slice(0, 3).map(c => {
             const scoreVal = matchResultsMap[c.id]?.totalScore || 80
             return (
               <div className="activity" key={c.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -113,10 +113,12 @@ export default function DashboardPage() {
                 </div>
                 <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                   <Badge t={scoreVal >= 88 ? 'teal' : 'amber'}>{scoreVal}% match</Badge>
-                  <Link href={`/candidates/${c.id}`}>
-                    <button className="button outline" style={{ padding: '4px 8px', fontSize: '11px' }}>
-                      Analyze
-                    </button>
+                  <Link
+                    href={`/candidates/${c.id}?jobId=${selectedJob?.id || 'JOB-001'}&from=dashboard`}
+                    className="button outline"
+                    style={{ padding: '4px 8px', fontSize: '11px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
+                  >
+                    Analyze
                   </Link>
                 </div>
               </div>

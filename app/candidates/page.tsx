@@ -152,10 +152,12 @@ export default function CandidatesPage() {
                   </td>
                   <td>
                     <div style={{ display: 'flex', gap: '6px' }}>
-                      <Link href={`/candidates/${c.id}`}>
-                        <button className="button outline" style={{ padding: '4px 8px', fontSize: '11px' }}>
-                          <Sparkles size={12} /> Analyze
-                        </button>
+                      <Link
+                        href={`/candidates/${c.id}`}
+                        className="button outline"
+                        style={{ padding: '4px 8px', fontSize: '11px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                      >
+                        <Sparkles size={12} /> Analyze
                       </Link>
                     </div>
                   </td>

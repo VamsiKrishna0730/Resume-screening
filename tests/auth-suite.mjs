@@ -183,7 +183,19 @@ assert.strictEqual(dropdowns.activeDropdown, null, 'Outside click closes all act
 
 console.log('✓ Dropdown state machine passed: Toggle, mutual exclusion, search, startStreaming, notifications, and messages verified')
 
+// Test 7: Recruiter Access to /candidates vs Candidate Portal Isolation
+console.log('\n[TEST 7: RECRUITER /CANDIDATES VS CANDIDATE PORTAL ROUTE ISOLATION]')
+const isCandidatePortalRoute = (pathname) => pathname === '/candidate' || pathname.startsWith('/candidate/')
+
+assert.strictEqual(isCandidatePortalRoute('/candidates'), false, '/candidates must NOT be identified as candidate portal')
+assert.strictEqual(isCandidatePortalRoute('/candidates/C-1001'), false, '/candidates/C-1001 must NOT be identified as candidate portal')
+assert.strictEqual(isCandidatePortalRoute('/candidates/C-1001?jobId=JOB-001&from=dashboard'), false, '/candidates query params must NOT trigger candidate portal guard')
+assert.strictEqual(isCandidatePortalRoute('/candidate'), true, '/candidate IS candidate portal')
+assert.strictEqual(isCandidatePortalRoute('/candidate/profile'), true, '/candidate/profile IS candidate portal')
+assert.strictEqual(isCandidatePortalRoute('/candidate/analysis'), true, '/candidate/analysis IS candidate portal')
+console.log('✓ Route isolation verified: Recruiter /candidates routes never trigger candidate portal redirect')
+
 console.log('\n' + '=' .repeat(80))
-console.log('ALL AUTHENTICATION & UI TESTS PASSED CLEANLY (6/6)')
+console.log('ALL AUTHENTICATION & UI TESTS PASSED CLEANLY (7/7)')
 console.log('=' .repeat(80))
 

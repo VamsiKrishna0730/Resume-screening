@@ -185,10 +185,13 @@ export function CandidateDrawer({ candidate, onClose }: CandidateDrawerProps) {
         </div>
 
         <div className="drawer-section">
-          <Link href={`/candidates/${candidate.id}`} onClick={onClose} style={{ textDecoration: 'none' }}>
-            <button className="button primary" style={{ width: '100%', justifyContent: 'center' }}>
-              <Sparkles size={14} /> Open Full Profile & AI Analysis
-            </button>
+          <Link
+            href={`/candidates/${candidate.id}`}
+            onClick={onClose}
+            className="button primary"
+            style={{ width: '100%', justifyContent: 'center', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}
+          >
+            <Sparkles size={14} /> Open Full Profile & AI Analysis
           </Link>
         </div>
 

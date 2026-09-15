@@ -9,8 +9,8 @@ export async function POST(request: Request) {
     const candidateId = body.candidateId || 'C-1001'
     const jobId = body.jobId || 'JOB-001'
 
-    const candidate = seedCandidates.find(c => c.id === candidateId) || seedCandidates[0]
-    const job = seedJobs.find(j => j.id === jobId) || seedJobs[0]
+    const candidate = body.candidate || seedCandidates.find(c => c.id === candidateId) || seedCandidates[0]
+    const job = body.job || seedJobs.find(j => j.id === jobId) || seedJobs[0]
 
     const skillAnalysis = analyzeSkills(candidate, job)
     const scoreParts = { lexical: 82, semantic: 88, skills: 90, experience: 85, education: 80, projects: 85, cgpa: 85 }

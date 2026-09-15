@@ -66,11 +66,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     } else if (user && !isPublic) {
       // Role protection
-      const isCandidatePath = pathname.startsWith('/candidate')
-      if (user.role === 'CANDIDATE' && !isCandidatePath) {
-        // Candidate trying to access recruiter / admin pages (/dashboard, /fairness, /jobs, etc.)
+      // Only match Candidate Portal routes (/candidate, /candidate/*), NOT Recruiter /candidates routes (/candidates, /candidates/*)
+      const isCandidatePortalRoute = pathname === '/candidate' || pathname.startsWith('/candidate/')
+      if (user.role === 'CANDIDATE' && !isCandidatePortalRoute) {
+        // Candidate trying to access recruiter / admin pages (/dashboard, /fairness, /jobs, /candidates, etc.)
         router.push('/candidate')
-      } else if (user.role !== 'CANDIDATE' && isCandidatePath) {
+      } else if (user.role !== 'CANDIDATE' && isCandidatePortalRoute) {
         // Recruiter / admin accessing candidate portal directly can be routed to /dashboard
         router.push('/dashboard')
       }
